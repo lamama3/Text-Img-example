@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hello </title>
+  
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700,900' rel='stylesheet' type='text/css'>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+  <script>var ml = { timelines: {}};</script>
+  <style type="text/css">
+  
+	  .btn {
+	  display: inline-block;
+	  padding: 15px 25px;
+	  font-size: 24px;
+	  cursor: pointer;
+	  text-align: center;
+	  text-decoration: none;
+	  outline: none;
+	  color: #fff;
+	  background-color: #4CAF50;
+	  border: none;
+	  border-radius: 15px;
+	  box-shadow: 0 9px #999;
+		}
+		
+	 .btn:hover {background-color: #3e8e41}
+
+	  .btn:active {
+	  background-color: #3e8e41;
+	  box-shadow: 0 5px #666;
+	  transform: translateY(4px);
+	 }
+
+	  body {
+		font: 13px "Comic sans MS", Arial, Helvetica, sans-serif;
+		background-color: #45383c;
+		color: #fff;
+		text-align: center;
+	  }
+	  .moving-letters {
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		margin: auto;
+		height: 200px;
+	  }
+  
+  </style>
+  
+</head>
+<body>
+  <div class="moving-letters">
+    <h1 class="ml12">Everything Happens for a Reason</h1>
+
+<div id="div1" style="visibility: hidden">Click The Button</div>	
+<button id= "div2" class="btn" onclick="myFunction()" style="visibility: hidden" >Try it</button>
+
+
+<!--script-->
+
+<script type="text/javascript">
+
+// Wrap every letter in a span
+$('.ml12').each(function(){
+  $(this).html($(this).text().replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>"));
+});
+ml.timelines["ml12"] = anime.timeline({loop: true})
+  .add({
+    targets: '.ml12 .letter',
+    translateX: [100,0],
+    translateZ: 0,
+    opacity: [0,1],
+    easing: "easeOutExpo",
+    duration: 2000,
+    delay: function(el, i) {
+      return 300 + 30 * i;
+    }
+  }).add({
+    targets: '.ml12 .letter',
+    translateX: [0,-100],
+    opacity: [1,0],
+    easing: "easeInExpo",
+    duration: 1500,
+    delay: function(el, i) {
+      return 100 + 30 * i;
+    }
+  });
+
+
+function showIt() {
+  document.getElementById("div1").style.visibility = "visible";
+}
+setTimeout("showIt()", 3000); // after 3 sec
+
+
+function showIt2() {
+  document.getElementById("div2").style.visibility = "visible";
+}
+setTimeout("showIt2()", 2000); // after 2 sec
+
+
+  function myFunction() {
+  var x = document.createElement("IMG");
+  x.setAttribute("src", "anigif_enhanced-buzz-2216-1397244118-8.gif");
+  x.setAttribute("width", "400");
+  x.setAttribute("height", "316");
+  x.setAttribute("alt", "just belive");
+  document.body.appendChild(x);
+}
+
+
+</script>
+
+<style>
+.ml12 {
+  font-weight: 600;
+  font-size: 1.9em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+</style>
+
+
+  </div>
+</body>
+</html>
